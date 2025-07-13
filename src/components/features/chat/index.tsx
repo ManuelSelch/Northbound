@@ -2,28 +2,10 @@
 
 import { Button, Card, Group, Slider, Stack, Title } from "@mantine/core";
 import { useState } from "react";
+import { Feedback } from "./feedback";
+import { StepCard } from "./step-card";
 
 
-// type: "select" | "boolean" | "number"
-interface BaseStep {
-    id: string;
-    type: 'select' | 'slider';
-    question: string
-    conditions?: { id: string, op: '=' | '!=' | '>' | '<', value: string }[]
-}
-
-interface SelectStep extends BaseStep {
-    type: 'select'
-    answers: string[]
-}
-
-interface SliderStep extends BaseStep {
-    type: 'slider'
-    min: number
-    max: number
-}
-
-type ChatStep = SelectStep | SliderStep;
 
 // allgemein
 // alter, schule, klasse, ausbildung, arbeit
@@ -99,65 +81,10 @@ const workflow: ChatStep[] =  [
 
 ]
 
-function generateFeedback(answers: Record<string, string>) {
-    const feedback: string[] = [];
-    const suggestions: string[] = [];
-
-    // Fokus
-    if(answers["fokus"] !== "Gar nicht") {
-        feedback.push("Du schiebst bisher noch ab und zu Dinge auf");
-        suggestions.push("Wie wäre es mit einer täglichen 5min Fokuszone als tägliches Mini-Ziel? Keine Ausreden, kein Stress.");
-    }
-
-    // Freizeit
-    if (answers["freizeit"] === "Sport") {
-        feedback.push("Du scheinst ein aktiver Mensch zu sein.");
-    }
-    if (answers["freizeit"] === "Lesen, Musik oder kreativer Kram") {
-        feedback.push("Kreative Tätigkeiten scheinen dir zu liegen.");
-    }
-
-    // Alltag
-    if (answers["alltag"] === "Ich hab keine echte Struktur") {
-        suggestions.push("Du könntest mal ausprobieren, deine Woche mit 1–2 festen Ritualen zu strukturieren.");
-    }
-
-    // Musik
-    if (answers["musik"] === "Motivation & Wokrout") {
-        feedback.push("Du scheinst gerne mit Energie und Motivation in den Tag zu starten.");
-    }
-    if (answers["musik"] === "Emotional / Melancholisch") {
-        feedback.push("Du nimmst Emotionen bewusst wahr – das kann eine Stärke sein.");
-    }
-
-    return { feedback, suggestions };
-}
-
-export function Feedback({answers}: {answers: Record<string, string>}) {
-    return (
-        <Card shadow="md" withBorder radius="lg" mt="xl">
-            <Title order={4}>Dein Feedback</Title>
-            <Stack mt="md">
-                {
-                    generateFeedback(answers).feedback.map((f, i) => (
-                        <Card key={i} bg="gray.0" radius="md" shadow="sm" p="sm">
-                            {f}
-                        </Card>
-                    ))
-                }
-
-            
-
-
-            </Stack>
-        </Card>
-    );
-}
 
 export function Chat() {
     const [step, setStep] = useState(0);
     const [answers, setAnswers] = useState<Record<string, string>>({});
-    const [sliderValue, setSliderValue] = useState(0);
 
     if(step === workflow.length)
         return <Feedback answers={answers} />
@@ -251,60 +178,7 @@ export function Chat() {
             
             <Group justify="end">
                 <Stack>
-                    {stepData.type === 'select' &&
-                        stepData.answers.map(answer => {
-                            return (
-                                <Card key={answer} shadow="md" withBorder radius="lg" bg="teal" style={{ cursor: "pointer" }} onClick={() => {saveAnswer(stepData.id, answer)}}>
-                                    <Title order={5}>{answer}</Title>
-                                </Card>
-                            )
-                        })
-                    }
-
-                    {stepData.type === 'slider' &&
-                        <Group gap={15} className="w-full">
-                            <Button onClick={() => {saveAnswer(stepData.id, sliderValue.toString())}}>Save</Button>
-                            <Slider className="w-[50vw]" value={sliderValue} onChange={setSliderValue} min={stepData.min} max={stepData.max} marks={[
-                                {value: stepData.min, label: 'min'},
-                                {value: stepData.max, label: 'max'}
-                            ]}/>
-                        </Group>
-                        
-                    }
-
-                    {
-                        step === workflow.length && (
-                            <Card shadow="md" withBorder radius="lg" mt="xl">
-                                <Title order={4}>Dein Feedback</Title>
-                                <Stack mt="md">
-                                    {
-                                        generateFeedback(answers).feedback.map((f, i) => (
-                                            <Card key={i} bg="gray.0" radius="md" shadow="sm" p="sm">
-                                                {f}
-                                            </Card>
-                                        ))
-                                    }
-
-                                    {
-                                        generateFeedback(answers).suggestions.length > 0 && (
-                                            <>
-                                                <Title order={5} mt="md">Vorschläge für dich</Title>
-                                                {
-                                                    generateFeedback(answers).suggestions.map((s, i) => (
-                                                        <Card key={i} bg="blue.0" radius="md" shadow="sm" p="sm">
-                                                            {s}
-                                                        </Card>
-                                                    ))
-                                                }
-                                            </>
-                                        )
-                                    }
-                                </Stack>
-                            </Card>
-                        )
-                    }
-
-
+                    <StepCard step={stepData} saveAnswer={saveAnswer}/>
                 </Stack>
                
             </Group>
