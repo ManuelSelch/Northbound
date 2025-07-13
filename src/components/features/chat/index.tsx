@@ -94,9 +94,9 @@ export function Chat() {
     }
 
     function showNextQuestion(currentStep: number) {
-        if(currentStep == workflow.length)
+        if(currentStep+1 === workflow.length)
             return currentStep;
-        
+
         let newStep = currentStep+1;
 
         const newQuestion = workflow[newStep];
