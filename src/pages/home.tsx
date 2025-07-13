@@ -1,10 +1,11 @@
-import { Header } from "../components/header";
+import { Header } from "../components/layout/header";
+import {Chat} from "../components/features/chat";
 
 export function Home() {
     return (
         <div>
             <Header />
-            <div>hallo welt</div>
+            <Chat/>
         </div>
     );
 }
