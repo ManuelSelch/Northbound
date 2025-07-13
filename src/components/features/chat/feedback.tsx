@@ -124,7 +124,7 @@ export function Feedback({answers}: {answers: Record<string, string>}) {
                 <Group align="flex-start" wrap="nowrap">
                     <IconInfoCircle size={32} color="#1c7ed6" style={{ marginTop: 4 }} />
                     <Stack gap={4}>
-                    <Title order={5} c="blue.7">Noch nicht genug Daten</Title>
+                    <Title order={5} c="blue.7">Entspannen</Title>
                     <div>
                         Lehne dich zurück und warte, bis wir genügend Daten gesammelt haben. Dann erhältst du eine erste aussagekräftige Analyse!
                     </div>

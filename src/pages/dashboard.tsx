@@ -1,7 +1,7 @@
 import { ActionIcon, Button, Card, Center, Container, Image, Stack, Text } from "@mantine/core";
 import { IconPencil } from "@tabler/icons-react";
 
-export function Dashboard() {
+export function Dashboard({start}: {start: () => void}) {
     return (
         <Stack gap={25}>
             <Center style={{ position: 'relative', width: 200, margin: 'auto' }}>
@@ -43,7 +43,7 @@ export function Dashboard() {
                     <Stack>
                         <Text>Hey, lass uns loslegen, gemeinsam dein Profil einzustellen</Text>
                         <Center>
-                            <Button w={100}>Start</Button>
+                            <Button w={100} onClick={start}>Start</Button>
                         </Center>
                     </Stack>
                 </Card>
