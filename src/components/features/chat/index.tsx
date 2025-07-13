@@ -17,7 +17,7 @@ const workflow: ChatStep[] =  [
     {
         id: "freizeit",
         type: "select",
-        question: "Wie verbringst du am liebsten deine Freizeit",
+        question: "Wie verbringst du am liebsten deine Freizeit?",
         answers: [
           "Spielen",
           "Lesen, Musik oder kreativer Kram",
@@ -38,18 +38,6 @@ const workflow: ChatStep[] =  [
         ]
     },
 
-    { // -> Mini Ziele: 5min Fokuszone: keine Ausreden, kein Stress
-        id: "fokus",
-        type: "select",
-        question: "Wie oft hast du letzte Woche Dinge aufgeschoben, obwohl du sie erledigen wolltest?",
-        answers: [
-          "Gar nicht",
-          "1-2 Mal",
-          "3-5 Mal",
-          "Täglich"
-        ]
-    },
-
     { 
         id: "alltag",
         type: "select",
@@ -64,9 +52,9 @@ const workflow: ChatStep[] =  [
     { 
         id: "musik",
         type: "select",
-        question: "Was hörst du in letzere Zeit am meisten?",
+        question: "Was hörst du in letzter Zeit am meisten?",
         answers: [
-          "Motivation & Wokrout",
+          "Motivation & Workout",
           "Chill & Lo-Fi",
           "Emotional / Melancholisch",
           "Ich höre kaum Musik"

@@ -50,22 +50,6 @@ export function Feedback({answers}: {answers: Record<string, string>}) {
                 break;
         }
 
-        // Fokus
-        switch (answers["fokus"]) {
-            case "Gar nicht":
-                feedback.push("Stark! Du scheinst sehr diszipliniert zu sein.");
-                break;
-            case "1-2 Mal":
-                feedback.push("Kleine Ablenkungen sind normal – du bist auf einem guten Weg.");
-                break;
-            case "3-5 Mal":
-                feedback.push("Es gibt noch Raum für Verbesserung – vielleicht helfen dir Mini-Ziele.");
-                break;
-            case "Täglich":
-                feedback.push("Du bist nicht allein – viele Menschen schieben Aufgaben auf. Kleine Schritte helfen weiter.");
-                break;
-        }
-
         // Alltag
         switch (answers["alltag"]) {
             case "Ich liebe klare Routinen":
