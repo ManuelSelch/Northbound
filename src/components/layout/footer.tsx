@@ -21,7 +21,7 @@ export function Footer() {
   ));
 
   return (
-    <div className="mt-10 w-full bg-[rgb(236,230,220)]">
+    <div className="mt-10 pb-10 px-5 w-full bg-[rgb(236,230,220)]">
         <Divider className="pb-5" />
         <Image w={100} src="/northbound-logo.png" />
 
