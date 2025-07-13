@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@mantine/core/styles.css';
 import { MantineProvider} from '@mantine/core';
-import { Home } from './pages/home';
 import './index.css';
+import { Root } from './components/layout/root';
+import { Dashboard } from './pages/dashboard';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <MantineProvider>
-        <Home/>
+        <Root>
+          <Dashboard/>
+        </Root>
     </MantineProvider>
   </React.StrictMode>
 );
