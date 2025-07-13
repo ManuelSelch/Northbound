@@ -4,7 +4,6 @@ import '@mantine/core/styles.css';
 import { MantineProvider} from '@mantine/core';
 import './index.css';
 import { Root } from './components/layout/root';
-import { Dashboard } from './pages/dashboard';
 import { Home } from './pages/home';
 
 const root = ReactDOM.createRoot(

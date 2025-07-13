@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Card, Center, Container, Image, Stack, Text } from "@mantine/core";
+import { ActionIcon, Button, Card, Center, Image, Stack, Text } from "@mantine/core";
 import { IconPencil } from "@tabler/icons-react";
 
 export function Dashboard({start}: {start: () => void}) {
