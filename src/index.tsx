@@ -12,9 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <MantineProvider>
-      <Container>
         <Home/>
-      </Container>
     </MantineProvider>
   </React.StrictMode>
 );
