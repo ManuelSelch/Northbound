@@ -23,7 +23,7 @@ function SelectStepCard({step, saveAnswer}: {step: SelectStep, saveAnswer: SaveA
                         <Title order={5}>{answer}</Title>
                     </Card>
                 )
-            })};
+            })}
         
         </div>
     );

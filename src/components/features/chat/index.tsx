@@ -1,15 +1,9 @@
 "use client";
 
-import { Button, Card, Group, Slider, Stack, Title } from "@mantine/core";
+import { Card, Group, Stack, Title } from "@mantine/core";
 import { useState } from "react";
 import { Feedback } from "./feedback";
 import { StepCard } from "./step-card";
-
-
-
-// allgemein
-// alter, schule, klasse, ausbildung, arbeit
-
 
 const workflow: ChatStep[] =  [
     {
@@ -159,8 +153,6 @@ export function Chat() {
                             
                             </Group>
                         </div>
-                    
-                   
                 ))
                 
             }
@@ -180,7 +172,6 @@ export function Chat() {
                 <Stack>
                     <StepCard step={stepData} saveAnswer={saveAnswer}/>
                 </Stack>
-               
             </Group>
             
         </Stack>
