@@ -2,9 +2,7 @@ import { Anchor, Divider, Group, Image } from '@mantine/core';
 
 const links = [
   { link: '#', label: 'Contact' },
-  { link: '#', label: 'Privacy' },
-  { link: '#', label: 'Blog' },
-  { link: '#', label: 'Careers' },
+  { link: '#', label: 'Privacy' }
 ];
 
 export function Footer() {
