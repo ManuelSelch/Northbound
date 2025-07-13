@@ -45,34 +45,55 @@ const workflow: ChatStep[] =  [
         answers: [
           "Spielen",
           "Lesen, Musik oder kreativer Kram",
-          "Sport"
-        ]
-    },
-
-    {
-        id: "3",
-        type: "select",
-        question: "Welche Schulfächer interessieren dich am meisten?",
-        answers: [
-          "Mathematik, Informatik, Naturwissenschaften",
-          "Kunst, Musik, Deutsch",
-          "Ethik, Sozialkunde",
-          "Technik, Sport",
-          "Wirtschaft, Politik, Recht"
-        ],
-        conditions: [
-            {id: "age", op: "<", value: "19"}
+          "Sport",
+          "Sonstiges"
         ]
     },
 
     {
         id: "4",
         type: "select",
-        question: "Wie verbringst du am liebsten deine Freizeit",
+        question: "Wann stehst du normalerweise auf?",
         answers: [
-          "Spielen",
-          "Lesen, Musik oder kreativer Kram",
-          "Sport"
+          "Vor 6 Uhr",
+          "Zwischen 6 und 8 Uhr",
+          "Zwischen 8 und 10 Uhr",
+          "Später als 10 Uhr"
+        ]
+    },
+
+    { // -> Mini Ziele: 5min Fokuszone: keine Ausreden, kein Stress
+        id: "4",
+        type: "select",
+        question: "Wie oft hast du letzte Woche Dinge aufgeschoben, obwohl du sie erledigen wolltest?",
+        answers: [
+          "Gar nicht",
+          "1-2 Mal",
+          "3-5 Mal",
+          "Täglich"
+        ]
+    },
+
+    { 
+        id: "4",
+        type: "select",
+        question: "Wie planst du deinen Alltag aktuell?",
+        answers: [
+          "Ich liebe klare Routinen",
+          "Ich improvisiere gern",
+          "Ich hab keine echte Struktur"
+        ]
+    },
+
+    { 
+        id: "4",
+        type: "select",
+        question: "Was hörst du in letzere Zeit am meisten?",
+        answers: [
+          "Motivation & Wokrout",
+          "Chill & Lo-Fi",
+          "Emotional / Melancholisch",
+          "Ich höre kaum Musik"
         ]
     },
 
@@ -179,9 +200,9 @@ export function Chat() {
                     }
 
                     {stepData.type === 'slider' &&
-                        <Group gap={15}>
+                        <Group gap={15} className="w-full">
                             <Button onClick={() => {saveAnswer(stepData.id, sliderValue.toString())}}>Save</Button>
-                            <Slider w={500} value={sliderValue} onChange={setSliderValue} min={stepData.min} max={stepData.max} marks={[
+                            <Slider className="w-[50vw]" value={sliderValue} onChange={setSliderValue} min={stepData.min} max={stepData.max} marks={[
                                 {value: stepData.min, label: 'min'},
                                 {value: stepData.max, label: 'max'}
                             ]}/>
