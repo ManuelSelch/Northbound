@@ -9,7 +9,7 @@ interface BaseStep {
     id: string;
     type: 'select' | 'slider';
     question: string
-    conditions?: { id: string, value: string }[]
+    conditions?: { id: string, op: '=' | '!=' | '>' | '<', value: string }[]
 }
 
 interface SelectStep extends BaseStep {
@@ -31,7 +31,7 @@ type ChatStep = SelectStep | SliderStep;
 
 const workflow: ChatStep[] =  [
     {
-        id: "1",
+        id: "age",
         type: "slider",
         question: "Wie alt bist du?",
         min: 15,
@@ -59,8 +59,23 @@ const workflow: ChatStep[] =  [
           "Ethik, Sozialkunde",
           "Technik, Sport",
           "Wirtschaft, Politik, Recht"
+        ],
+        conditions: [
+            {id: "age", op: "<", value: "19"}
         ]
     },
+
+    {
+        id: "4",
+        type: "select",
+        question: "Wie verbringst du am liebsten deine Freizeit",
+        answers: [
+          "Spielen",
+          "Lesen, Musik oder kreativer Kram",
+          "Sport"
+        ]
+    },
+
 ]
 
 export function Chat() {
@@ -82,10 +97,25 @@ export function Chat() {
         let newStep = currentStep+1;
 
         const newQuestion = workflow[newStep];
+        let skipQuestion = false;
         newQuestion.conditions?.forEach(q => {
-            if(answers[q.id] !== q.value) {
-                return showNextQuestion(newStep);
+            switch(q.op) {
+                case '=':
+                    skipQuestion = answers[q.id] !== q.value;
+                    break;
+                case '!=':
+                    skipQuestion = answers[q.id] === q.value;
+                    break;
+                case '>':
+                    skipQuestion = answers[q.id] <= q.value;
+                    break;
+                case '<':
+                    skipQuestion = answers[q.id] >= q.value;
+                    break;
             }
+            
+            if(skipQuestion) 
+                return showNextQuestion(newStep);
         });
 
         return newStep;
