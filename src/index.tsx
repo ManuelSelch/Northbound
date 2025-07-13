@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@mantine/core/styles.css';
-import { MantineProvider, Container} from '@mantine/core';
+import { MantineProvider} from '@mantine/core';
 import { Home } from './pages/home';
 import './index.css';
 
