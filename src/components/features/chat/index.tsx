@@ -85,7 +85,6 @@ export function Chat() {
 
     const stepData = workflow[step];
 
-    
     function saveAnswer(id: string, answer: string) {
         addAnswer(id, answer); 
 
